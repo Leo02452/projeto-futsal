@@ -49,5 +49,5 @@ Criar página de histórico do time (financeiro, estatistico e de transferência
 ## Requisito 5
 Criar página de histórico dos jogadores individualmente.
 
-# Requisito 6
+## Requisito 6
 Criar página que permite alteração dos dados, tanto do time quanto dos jogadores.
