@@ -44,10 +44,16 @@ Criar a página financeira, onde o usuário possa:
 - Verificar o balanço do mês e saldo que o time tem disponível ao todo.
 
 ## Requisito 4
-Criar página de histórico do time (financeiro, estatistico e de transferências).
+Criar página de histórico do time e dentro da página criar três abas:
+- Financeiro, visível só para os administradores.
+- Estatisticas do time, como vitórias, empates, derrotas, gols sofridos, gols marcados e saldo.
+- Transferências de jogadores, com data de entrada e saída.
 
 ## Requisito 5
-Criar página de histórico dos jogadores individualmente.
+Criar página de histórico dos jogadores individualmente, por quadro, com:
+- Número de jogos
+- Gols
+- Assistências
 
 ## Requisito 6
 Criar página que permite alteração dos dados, tanto do time quanto dos jogadores.
