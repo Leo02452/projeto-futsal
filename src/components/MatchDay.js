@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
+import MatchDayContext from '../contexts/MatchDayContext';
 import Players from './Players';
 
 function MatchDay() {
+  const { score } = useContext(MatchDayContext);
   const [showEvents, setShowEvents] = useState(false);
   const [showTeams, setShowTeams] = useState(false);
   const [showPlayers, setShowPlayers] = useState({ activated: false, team: '' });
-  const [score, setScore] = useState({ teamA: 0, teamB: 0 })
+  
 
   return (
     <section>
