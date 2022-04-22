@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import MatchDay from './components/MatchDay';
 
-export default class App extends Component {
-  render() {
+export default function App() {
     return (
-      <div>Olá, mundo!</div>
+      <main>
+        <MatchDay />
+      </main>
     );
-  }
 }
