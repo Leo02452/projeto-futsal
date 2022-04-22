@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import players from '../mocks/players';
+import MatchDayContext from '../contexts/MatchDayContext';
 
-function Players() {
+function Players(props) {
+  const { team } = props;
+
+  const { addScore } = useContext(MatchDayContext);
   return (
     <div>
       { players.map((player, index) => (
@@ -17,6 +21,7 @@ function Players() {
       ))}
       <button
         type="button"
+        onClick={ () => addScore(team) }
       >
         Adicionar
       </button>

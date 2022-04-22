@@ -45,23 +45,23 @@ function MatchDay() {
               <div>
                 <button
                   type="button"
-                  value="myTeam"
-                  onClick={ () => setShowPlayers({ activated: true, team: 'a' }) }
+                  value="teamA"
+                  onClick={ () => setShowPlayers({ activated: true, team: 'teamA' }) }
                 >
                   Meu time
                 </button>
                 <button
                   type="button"
-                  value="opponent"
-                  onClick={ () => setShowPlayers({ activated: true, team: 'b' }) }
+                  value="teamB"
+                  onClick={ () => setShowPlayers({ activated: true, team: 'teamB' }) }
                   >
                   Adversário
                 </button>
               </div>
               { showPlayers.activated && (
                 <div>
-                  <span>{showPlayers.team === 'a' ? 'Quem fez?' : 'Quem sofreu?'}</span>
-                <Players />
+                  <span>{showPlayers.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
+                <Players team={ showPlayers.team } />
                 </div>
               )}
             </div>
