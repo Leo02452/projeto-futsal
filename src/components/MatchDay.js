@@ -5,7 +5,7 @@ import Players from './Players';
 function MatchDay() {
   const { score } = useContext(MatchDayContext);
   const [showEvents, setShowEvents] = useState(false);
-  const [showTeams, setShowTeams] = useState(false);
+  const [showTeams, setShowTeams] = useState({ activated: false, event: '' });
   const [showPlayers, setShowPlayers] = useState({ activated: false, team: '' });
   
 
@@ -29,18 +29,18 @@ function MatchDay() {
           <div>
             <button
               type="button"
-              onClick={ () => setShowTeams(true) }
+              onClick={ () => setShowTeams({ activated: true, event: 'goal' }) }
             >
               Adicionar gol
             </button>
             <button
               type="button"
-              onClick={ () => setShowTeams(true) }
+              onClick={ () => setShowTeams({ activated: true, event: 'foul' }) }
             >
               Adicionar falta
             </button>
           </div>
-          { showTeams && (
+          { showTeams.activated && (
             <div>
               <div>
                 <button
@@ -61,7 +61,7 @@ function MatchDay() {
               { showPlayers.activated && (
                 <div>
                   <span>{showPlayers.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
-                <Players team={ showPlayers.team } />
+                <Players team={ showPlayers.team } eventType={ showTeams.event } />
                 </div>
               )}
             </div>
