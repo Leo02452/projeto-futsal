@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import MatchDayContext from '../contexts/MatchDayContext';
+import Events from './Events';
 import Players from './Players';
 
 function MatchDay() {
@@ -68,6 +69,7 @@ function MatchDay() {
             )}
         </div>
       )}
+      <Events />
     </section>
   )
 }
