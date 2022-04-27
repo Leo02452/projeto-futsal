@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import MatchDayContext from '../contexts/MatchDayContext';
 import Events from './Events';
 import Players from './Players';
+import './Matchday.css'
 
 function MatchDay() {
   const { score } = useContext(MatchDayContext);
@@ -11,17 +12,18 @@ function MatchDay() {
   
 
   return (
-    <section>
-      <div>
-        <span>Seu time</span>
-        <span>{score.teamA}</span>
-        <span>vs</span>
-        <span>{score.teamB}</span>
-        <span>Adversário</span>
+    <section className="matchday-container">
+      <div className="scoreboard-container">
+        <span className="matchday-teams">Seu time</span>
+        <span className="score">{score.teamA}</span>
+        <span className="vs">vs</span>
+        <span className="matchday-teams">{score.teamB}</span>
+        <span className="score">Adversário</span>
       </div>
       <button
         type="button"
         onClick={ () => setShowEvents(true) }
+        className="btn"
       >
         Adicionar evento
       </button>
@@ -30,15 +32,17 @@ function MatchDay() {
           <div>
             <button
               type="button"
+              className="btn"
               onClick={ () => setShowTeams({ activated: true, event: 'goal' }) }
             >
-              Adicionar gol
+              Gol
             </button>
             <button
               type="button"
+              className="btn"
               onClick={ () => setShowTeams({ activated: true, event: 'foul' }) }
             >
-              Adicionar falta
+              Falta
             </button>
           </div>
           { showTeams.activated && (
@@ -47,6 +51,7 @@ function MatchDay() {
                 <button
                   type="button"
                   value="teamA"
+                  className="btn"
                   onClick={ () => setShowPlayers({ activated: true, team: 'teamA' }) }
                 >
                   Meu time
@@ -54,14 +59,15 @@ function MatchDay() {
                 <button
                   type="button"
                   value="teamB"
+                  className="btn"
                   onClick={ () => setShowPlayers({ activated: true, team: 'teamB' }) }
                   >
                   Adversário
                 </button>
               </div>
               { showPlayers.activated && (
-                <div>
-                  <span>{showPlayers.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
+                <div className="players-container">
+                  <span className="players-title">{showPlayers.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
                 <Players team={ showPlayers.team } eventType={ showTeams.event } />
                 </div>
               )}

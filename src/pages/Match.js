@@ -5,7 +5,6 @@ import MatchDayProvider from '../contexts/MatchDayProvider';
 function Match() {
   return (
     <div>
-      Match
       <MatchDayProvider>
         <MatchDay />
       </MatchDayProvider>

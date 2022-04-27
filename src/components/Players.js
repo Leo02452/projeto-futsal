@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import players from '../mocks/players';
 import MatchDayContext from '../contexts/MatchDayContext';
+import './Players.css';
 
 function Players(props) {
   const { team, eventType } = props;
@@ -17,20 +18,25 @@ function Players(props) {
   };
 
   return (
-    <div>
+    <section className="players-wrapper">
       { players.map((player, index) => (
-        <label key={ index } htmlFor={ `player-${index}` }>
+        <label
+          key={ index }
+          htmlFor={ `player-${index}` }
+          className="player-input"
+        >
           {player.name}
           <input
             type="radio"
             id={ `player-${index}` }
             name="players"
             value={player.name}
+            
             onChange={ handleChange }
             />
         </label>
       ))}
-      <label htmlFor="unknown">
+      <label htmlFor="unknown" className="player-input">
         Não sei
         <input
           type="radio"
@@ -39,7 +45,7 @@ function Players(props) {
           value="unknown"
         />
       </label>
-      <label htmlFor="own-goal">
+      <label htmlFor="own-goal" className="player-input">
         Gol contra
         <input
           type="radio"
@@ -50,11 +56,12 @@ function Players(props) {
       </label>
       <button
         type="button"
+        className="btn"
         onClick={ handleClick }
       >
         Adicionar
       </button>
-    </div>
+    </section>
   )
 }
 

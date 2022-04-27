@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import MatchDayContext from '../contexts/MatchDayContext';
+import './Events.css';
 
 function Events() {
   const { events } = useContext(MatchDayContext);
@@ -7,10 +8,10 @@ function Events() {
   return (
     <div>
       { events?.map((event, index) => (
-        <div key={ index }>
-          <h3>{event.type === 'goal' ? 'Gol!' : 'Falta'}</h3>
-          <span>{event.player}</span>
-          <span>{event.team}</span>
+        <div key={ index } className="events-container">
+          <h3 className="event-title">{event.type === 'goal' ? 'Gol!' : 'Falta'}</h3>
+          <span className="event-player">{event.player}</span>
+          <span className="event-team">{event.team === 'teamA' ? 'Meu time' : 'Adversário'}</span>
         </div>
       )) }
     </div>
