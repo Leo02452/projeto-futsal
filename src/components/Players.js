@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import players from '../mocks/players';
 import MatchDayContext from '../contexts/MatchDayContext';
 import './Players.css';
@@ -6,7 +6,15 @@ import './Players.css';
 function Players(props) {
   const { team, eventType } = props;
   const { addEvent } = useContext(MatchDayContext);
-  const [event, setEvent] = useState({ type: eventType, team, player: '' })
+  const [event, setEvent] = useState({ type: eventType, team, player: '' });
+
+  useEffect(() => {
+    const handleEvent = () => {
+      setEvent({ ...event, type: eventType, team });
+    };
+    handleEvent();
+  }, [team, eventType]);
+  
 
   const handleChange = ({ target }) => {
     const { value } = target;
