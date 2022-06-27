@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { object } from 'prop-types';
 import MatchDayContext from './MatchDayContext';
 
@@ -6,14 +6,20 @@ function MatchDayProvider(props) {
   const [score, setScore] = useState({ teamA: 0, teamB: 0 });
   const [events, setEvents] = useState([]);
   
-
-  const addScore = (team) => {
-    setScore({ ...score, [team]: score[team] + 1 })
+  useEffect(() => {
+  const handleScore = () => {
+    events.forEach((event) => {
+      if (event.type === 'goal') {
+        if (event.team === 'teamA') {
+          setScore({ ...score, teamA: score.teamA + 1 });
+        } else {
+          setScore({ ...score, teamB: score.teamB + 1 });
+        }
+      }
+    });
   };
-
-  const diminishScore = (team) => {
-    setScore({ ...score, [team]: score[team] - 1 })
-  };
+  handleScore();
+  }, [events]);
 
   const addEvent = (event) => {
     setEvents([...events, event]);
@@ -27,8 +33,6 @@ function MatchDayProvider(props) {
       value={ {
         score,
         setScore,
-        addScore,
-        diminishScore,
         events,
         addEvent,
       } }
