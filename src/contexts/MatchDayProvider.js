@@ -5,6 +5,11 @@ import MatchDayContext from './MatchDayContext';
 function MatchDayProvider(props) {
   const [score, setScore] = useState({ teamA: 0, teamB: 0 });
   const [events, setEvents] = useState([]);
+  const [renderButtons, setRenderButtons] = useState({
+    showEventTypesButton: { activated: false },
+    showTeamButtons: { activated: false, event: '' },
+    showPlayers: { activated: false, team: '' },    
+  });
   
   useEffect(() => {
   const handleScore = () => {
@@ -35,6 +40,8 @@ function MatchDayProvider(props) {
         setScore,
         events,
         addEvent,
+        renderButtons,
+        setRenderButtons,
       } }
     >
       {children}
