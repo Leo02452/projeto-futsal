@@ -13,15 +13,18 @@ function MatchDayProvider(props) {
   
   useEffect(() => {
   const handleScore = () => {
+    let teamAScore = 0;
+    let teamBScore = 0;
     events.forEach((event) => {
       if (event.type === 'goal') {
         if (event.team === 'teamA') {
-          setScore({ ...score, teamA: score.teamA + 1 });
+          teamAScore += 1;
         } else {
-          setScore({ ...score, teamB: score.teamB + 1 });
+          teamBScore += 1;
         }
       }
     });
+    setScore({ teamA: teamAScore, teamB: teamBScore });
   };
   handleScore();
   }, [events]);
