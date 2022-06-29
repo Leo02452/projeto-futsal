@@ -5,7 +5,7 @@ import './Players.css';
 
 function Players(props) {
   const { team, eventType } = props;
-  const { addEvent } = useContext(MatchDayContext);
+  const { addEvent, setRenderButtons } = useContext(MatchDayContext);
   const [event, setEvent] = useState({ type: eventType, team, player: '' });
 
   useEffect(() => {
@@ -23,6 +23,11 @@ function Players(props) {
 
   const handleClick = () => {
     addEvent(event);
+    setRenderButtons({
+      showEventTypesButton: { activated: false },
+      showTeamButtons: { activated: false, event: '' },
+      showPlayers: { activated: false, team: '' },    
+    })
   };
 
   return (
