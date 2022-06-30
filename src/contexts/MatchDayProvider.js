@@ -13,9 +13,9 @@ function MatchDayProvider(props) {
   });
   const [events, setEvents] = useState([]);
   const [renderButtons, setRenderButtons] = useState({
-    showEventTypesButton: { activated: false },
-    showTeamButtons: { activated: false, event: '' },
-    showPlayers: { activated: false, team: '' },    
+    showEventTypesButton: false,
+    showTeamButtons: false,
+    showPlayers: false,    
   });
   
   useEffect(() => {

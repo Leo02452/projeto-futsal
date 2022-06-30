@@ -3,24 +3,15 @@ import players from '../mocks/players';
 import MatchDayContext from '../contexts/MatchDayContext';
 import './Players.css';
 
-function Players(props) {
-  const { team, eventType } = props;
-  const { addEvent, setRenderButtons, event, setEvent } = useContext(MatchDayContext);
-
-  useEffect(() => {
-    const handleEvent = () => {
-      setEvent({ ...event, type: eventType, team });
-    };
-    handleEvent();
-  }, [team, eventType]);
-  
+function Players() {
+  const { addEvent, setRenderButtons, event, setEvent } = useContext(MatchDayContext);  
 
   const handleChange = ({ target }) => {
     const { value } = target;
-    if(eventType === 'goal') {
+    if(event.type === 'goal') {
       setEvent({ ...event, goalPlayer: value });
     }
-    if(eventType === 'foul') {
+    if(event.type === 'foul') {
       setEvent({ ...event, foulPlayer: value });
     }
   }
@@ -28,9 +19,9 @@ function Players(props) {
   const handleClick = () => {
     addEvent(event);
     setRenderButtons({
-      showEventTypesButton: { activated: false },
-      showTeamButtons: { activated: false, event: '' },
-      showPlayers: { activated: false, team: '' },    
+      showEventTypesButton: false,
+      showTeamButtons: false,
+      showPlayers: false,    
     })
   };
 
@@ -48,7 +39,6 @@ function Players(props) {
             id={ `player-${index}` }
             name="players"
             value={player.name}
-            
             onChange={ handleChange }
             />
         </label>

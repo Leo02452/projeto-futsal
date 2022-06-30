@@ -13,6 +13,7 @@ function MatchDay() {
     setEvent
   } = useContext(MatchDayContext);
 
+  const { showEventTypesButton, showTeamButtons, showPlayers } = renderButtons;
   // const handleChange = ({ target }) => {
   //   const { value } = target;
   //   setEvent({ ...event, player: value });
@@ -31,13 +32,13 @@ function MatchDay() {
         type="button"
         onClick={ () => setRenderButtons({
           ...renderButtons,
-          showEventTypesButton: { activated: true },
+          showEventTypesButton: true,
         }) }
         className="btn"
       >
         Adicionar evento
       </button>
-      { renderButtons.showEventTypesButton.activated && (
+      { showEventTypesButton && (
         <div>
           <div>
             <button
@@ -46,7 +47,7 @@ function MatchDay() {
               onClick={ () => {
                 setRenderButtons({
                   ...renderButtons,
-                  showTeamButtons: { activated: true, event: 'goal' }})
+                  showTeamButtons: true })
                 setEvent({ ...event, type: 'goal' });
               } }
             >
@@ -58,14 +59,14 @@ function MatchDay() {
               onClick={ () => {
                 setRenderButtons({
                   ...renderButtons,
-                  showTeamButtons: { activated: true, event: 'foul' }});
+                  showTeamButtons: true });
                 setEvent({ ...event, type: 'foul' });
               } }
             >
               Falta
             </button>
           </div>
-          { renderButtons.showTeamButtons.activated && (
+          { showTeamButtons && (
             <div>
               <div>
                 <button
@@ -75,7 +76,7 @@ function MatchDay() {
                   onClick={ () => {
                     setRenderButtons({
                       ...renderButtons,
-                      showPlayers: { activated: true, team: 'teamA' }});
+                      showPlayers: true });
                     setEvent({ ...event, team: 'teamA' });
                   } }
                 >
@@ -88,17 +89,17 @@ function MatchDay() {
                   onClick={ () => {
                     setRenderButtons({
                       ...renderButtons,
-                      showPlayers: { activated: true, team: 'teamB' }});
+                      showPlayers: true });
                     setEvent({ ...event, team: 'teamB' });
                   } }
                   >
                   Adversário
                 </button>
               </div>
-              { renderButtons.showPlayers.activated && (
+              { showPlayers && (
                 <div className="players-container">
-                  <span className="players-title">{renderButtons.showPlayers.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
-                <Players team={ renderButtons.showPlayers.team } eventType={ renderButtons.showTeamButtons.event } />
+                  <span className="players-title">{event.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
+                <Players />
                 </div>
               )}
             </div>
