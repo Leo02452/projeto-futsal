@@ -5,8 +5,7 @@ import './Players.css';
 
 function Players(props) {
   const { team, eventType } = props;
-  const { addEvent, setRenderButtons } = useContext(MatchDayContext);
-  const [event, setEvent] = useState({ type: eventType, team, player: '' });
+  const { addEvent, setRenderButtons, event, setEvent } = useContext(MatchDayContext);
 
   useEffect(() => {
     const handleEvent = () => {
@@ -18,7 +17,12 @@ function Players(props) {
 
   const handleChange = ({ target }) => {
     const { value } = target;
-    setEvent({ ...event, player: value });
+    if(eventType === 'goal') {
+      setEvent({ ...event, goalPlayer: value });
+    }
+    if(eventType === 'foul') {
+      setEvent({ ...event, foulPlayer: value });
+    }
   }
 
   const handleClick = () => {
