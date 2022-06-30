@@ -1,64 +1,104 @@
-import React, {useState} from 'react';
+import React, { useContext } from 'react';
+import MatchDayContext from '../contexts/MatchDayContext';
+import Events from './Events';
 import Players from './Players';
+import './Matchday.css'
 
 function MatchDay() {
-  const [showEvents, setShowEvents] = useState(false);
-  const [showTeams, setShowTeams] = useState(false);
-  const [showPlayers, setShowPlayers] = useState({ activated: false, team: '' });
-  const [score, setScore] = useState({ teamA: 0, teamB: 0 })
+  const {
+    score,
+    renderButtons,
+    setRenderButtons,
+    event,
+    setEvent
+  } = useContext(MatchDayContext);
+
+  const { showEventTypesButton, showTeamButtons, showPlayers } = renderButtons;
+  // const handleChange = ({ target }) => {
+  //   const { value } = target;
+  //   setEvent({ ...event, player: value });
+  // };
 
   return (
-    <section>
-      <div>
-        <span>Seu time</span>
-        <span>{score.teamA}</span>
-        <span>vs</span>
-        <span>{score.teamB}</span>
-        <span>Adversário</span>
+    <section className="matchday-container">
+      <div className="scoreboard-container">
+        <span className="matchday-teams">Seu time</span>
+        <span className="score">{score.teamA}</span>
+        <span className="vs">vs</span>
+        <span className="matchday-teams">{score.teamB}</span>
+        <span className="score">Adversário</span>
       </div>
       <button
         type="button"
-        onClick={ () => setShowEvents(true) }
+        onClick={ () => setRenderButtons({
+          ...renderButtons,
+          showEventTypesButton: true,
+        }) }
+        className="btn"
       >
         Adicionar evento
       </button>
-      { showEvents && (
+      { showEventTypesButton && (
         <div>
           <div>
             <button
               type="button"
-              onClick={ () => setShowTeams(true) }
+              className="btn"
+              onClick={ () => {
+                setRenderButtons({
+                  ...renderButtons,
+                  showTeamButtons: true })
+                setEvent({ ...event, type: 'goal' });
+              } }
             >
-              Adicionar gol
+              Gol
             </button>
             <button
               type="button"
-              onClick={ () => setShowTeams(true) }
+              className="btn"
+              onClick={ () => {
+                setRenderButtons({
+                  ...renderButtons,
+                  showTeamButtons: true });
+                setEvent({ ...event, type: 'foul' });
+              } }
             >
-              Adicionar falta
+              Falta
             </button>
           </div>
-          { showTeams && (
+          { showTeamButtons && (
             <div>
               <div>
                 <button
                   type="button"
-                  value="myTeam"
-                  onClick={ () => setShowPlayers({ activated: true, team: 'a' }) }
+                  value="teamA"
+                  className="btn"
+                  onClick={ () => {
+                    setRenderButtons({
+                      ...renderButtons,
+                      showPlayers: true });
+                    setEvent({ ...event, team: 'teamA' });
+                  } }
                 >
                   Meu time
                 </button>
                 <button
                   type="button"
-                  value="opponent"
-                  onClick={ () => setShowPlayers({ activated: true, team: 'b' }) }
+                  value="teamB"
+                  className="btn"
+                  onClick={ () => {
+                    setRenderButtons({
+                      ...renderButtons,
+                      showPlayers: true });
+                    setEvent({ ...event, team: 'teamB' });
+                  } }
                   >
                   Adversário
                 </button>
               </div>
-              { showPlayers.activated && (
-                <div>
-                  <span>{showPlayers.team === 'a' ? 'Quem fez?' : 'Quem sofreu?'}</span>
+              { showPlayers && (
+                <div className="players-container">
+                  <span className="players-title">{event.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
                 <Players />
                 </div>
               )}
@@ -66,6 +106,7 @@ function MatchDay() {
             )}
         </div>
       )}
+      <Events />
     </section>
   )
 }
