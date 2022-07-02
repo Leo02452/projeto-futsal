@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import MatchDayContext from '../contexts/MatchDayContext';
 import Events from './Events';
-import Players from './Players';
 import './Matchday.css'
+import PlayersCard from './PlayersCard';
 
 function MatchDay() {
   const {
@@ -99,7 +99,7 @@ function MatchDay() {
               { showPlayers && (
                 <div className="players-container">
                   <span className="players-title">{event.team === 'teamA' ? 'Quem fez?' : 'Quem sofreu?'}</span>
-                <Players />
+                <PlayersCard />
                 </div>
               )}
             </div>
