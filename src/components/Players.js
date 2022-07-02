@@ -1,29 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
-import players from '../mocks/players';
+import React, { useContext } from 'react';
 import MatchDayContext from '../contexts/MatchDayContext';
+import players from '../mocks/players';
 import './Players.css';
 
-function Players() {
-  const { addEvent, setRenderButtons, event, setEvent } = useContext(MatchDayContext);  
-
-  const handleChange = ({ target }) => {
-    const { value } = target;
-    if(event.type === 'goal') {
-      setEvent({ ...event, goalPlayer: value });
-    }
-    if(event.type === 'foul') {
-      setEvent({ ...event, foulPlayer: value });
-    }
-  }
-
-  const handleClick = () => {
-    addEvent(event);
-    setRenderButtons({
-      showEventTypesButton: false,
-      showTeamButtons: false,
-      showPlayers: false,    
-    })
-  };
+function Players(props) {
+  const { onInputChange, isAssistPlayer } = props;
+  const { event } = useContext(MatchDayContext);
 
   return (
     <section className="players-wrapper">
