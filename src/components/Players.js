@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import MatchDayContext from '../contexts/MatchDayContext';
 import players from '../mocks/players';
+import PropTypes from 'prop-types';
 import './Players.css';
 
 function Players(props) {
@@ -19,39 +20,23 @@ function Players(props) {
           <input
             type="radio"
             id={ `player-${index}` }
-            name="players"
+            name={isAssistPlayer ? "assistPlayer" : `${event.type}Player` }
             value={player.name}
-            onChange={ handleChange }
+            onChange={ onInputChange }
             />
         </label>
       ))}
-      <label htmlFor="unknown" className="player-input">
-        Não sei
-        <input
-          type="radio"
-          id="unknown"
-          name="players"
-          value="unknown"
-        />
-      </label>
-      <label htmlFor="own-goal" className="player-input">
-        Gol contra
-        <input
-          type="radio"
-          id="own-goal"
-          name="players"
-          value="own-goal"
-        />
-      </label>
-      <button
-        type="button"
-        className="btn"
-        onClick={ handleClick }
-      >
-        Adicionar
-      </button>
     </section>
   )
 }
+
+Players.defaultProps = {
+  isAssistPlayer: false,
+};
+
+Players.propTypes = {
+  onInputChange: PropTypes.func.isRequired,
+  isAssistPlayer: PropTypes.bool,
+};
 
 export default Players;
