@@ -7,11 +7,11 @@ function AssistsOptions(props) {
 
   return (
     <>
-      <label htmlFor="unknown" className="player-input">
+      <label htmlFor="assistUnknown" className="player-input">
         Não sei
         <input
           type="radio"
-          id="unknown"
+          id="assistUnknown"
           name="assistPlayer"
           value="Desconhecido"
           onChange={ onInputChange }

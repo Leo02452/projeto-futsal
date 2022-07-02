@@ -7,11 +7,11 @@ function FoulsOptions(props) {
 
   return (
     <>
-      <label htmlFor="unknown" className="player-input">
+      <label htmlFor="foulUnknown" className="player-input">
         Não sei
         <input
           type="radio"
-          id="unknown"
+          id="foulUnknown"
           name={ `${event.type}Player` }
           value="Desconhecido"
           onChange={ onInputChange }

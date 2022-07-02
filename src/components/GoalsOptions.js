@@ -7,11 +7,11 @@ function GoalsOptions(props) {
 
   return (
     <>
-      <label htmlFor="unknown" className="player-input">
+      <label htmlFor="goalUnknown" className="player-input">
         Não sei
         <input
           type="radio"
-          id="unknown"
+          id="goalUnknown"
           name={ `${event.type}Player` }
           value="Desconhecido"
           onChange={ onInputChange }

@@ -13,14 +13,18 @@ function Players(props) {
       { players.map((player, index) => (
         <label
           key={ index }
-          htmlFor={ `player-${index}` }
+          htmlFor={ isAssistPlayer
+            ? `assistPlayer-${index}`
+            : `${event.type}Player-${index}` }
           className="player-input"
         >
           {player.name}
           <input
             type="radio"
-            id={ `player-${index}` }
-            name={isAssistPlayer ? "assistPlayer" : `${event.type}Player` }
+            id={ isAssistPlayer
+              ? `assistPlayer-${index}`
+              : `${event.type}Player-${index}` }
+            name={ isAssistPlayer ? "assistPlayer" : `${event.type}Player` }
             value={player.name}
             onChange={ onInputChange }
             />
